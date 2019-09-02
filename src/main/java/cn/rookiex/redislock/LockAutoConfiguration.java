@@ -73,9 +73,4 @@ public class LockAutoConfiguration {
         return new LockFactory();
     }
 
-//    @Bean
-//    public LockAspectHandler lockAspectHandler(){
-//        return new LockAspectHandler();
-//    }
-
 }

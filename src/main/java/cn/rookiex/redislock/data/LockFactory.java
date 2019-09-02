@@ -12,12 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Describe :
  */
 public class LockFactory {
-    Logger logger= LoggerFactory.getLogger(getClass());
+    Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Autowired
     private RedissonClient redissonClient;
 
-    public RedisLock getLock(LockInfo lockInfo){
+    @Autowired
+    public void setRedissonClient(RedissonClient redissonClient) {
+        this.redissonClient = redissonClient;
+    }
+
+    public RedisLock getLock(LockInfo lockInfo) {
         switch (lockInfo.getType()) {
             case Reentrant:
                 return new ReentrantLock(redissonClient, lockInfo);
