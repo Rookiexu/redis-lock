@@ -29,7 +29,7 @@ import java.lang.reflect.Method;
  */
 @Aspect
 @Component
-@Order(0)//加载顺序
+@Order(0)
 public class LockAspectHandler {
     private static final Logger logger = LoggerFactory.getLogger(LockAspectHandler.class);
 
@@ -128,14 +128,14 @@ public class LockAspectHandler {
     /**
      * 释放锁
      */
-    private void releaseLock(Lock klock, JoinPoint joinPoint) throws Throwable {
+    private void releaseLock(Lock lock, JoinPoint joinPoint) throws Throwable {
         LockRes lockRes = currentThreadLock.get();
         if (lockRes.getRes()) {
             boolean releaseRes = currentThreadLock.get().getLock().release();
             // avoid release lock twice when exception happens below
             lockRes.setRes(false);
             if (!releaseRes) {
-                handleReleaseTimeout(klock, lockRes.getLockInfo(), joinPoint);
+                handleReleaseTimeout(lock, lockRes.getLockInfo(), joinPoint);
             }
         }
     }
@@ -221,7 +221,9 @@ public class LockAspectHandler {
         }
     }
 
-    // avoid memory leak
+    /**
+     * avoid memory leak
+     */
     private void cleanUpThreadLocal() {
         currentThreadLock.remove();
     }

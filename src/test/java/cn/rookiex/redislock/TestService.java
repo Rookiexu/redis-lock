@@ -30,25 +30,25 @@ public class TestService {
 
     @Lock(keys = {"#userId"})
     public String getValue(String userId, @LockKey int id) throws Exception {
-        Thread.sleep(60 * 1000);
+        Thread.sleep(3 * 1000);
         return "success";
     }
 
     @Lock(keys = {"#userId"})
     public String setValue(String userId, @LockKey int id) throws Exception {
-        Thread.sleep(60 * 1000);
+        Thread.sleep(3 * 1000);
         return "success";
     }
 
-    @Lock(keys = {"#userId"})
+    @Lock
     public String getValue(String userId,  String id) throws Exception {
-        Thread.sleep(60 * 1000);
+        Thread.sleep(3 * 1000);
         return "success";
     }
 
     @Lock(keys = {"#user.name", "#user.id", "#user.age"})
     public String getValue(User user) throws Exception {
-        Thread.sleep(60 * 1000);
+        Thread.sleep(3 * 1000);
         return "success";
     }
 }

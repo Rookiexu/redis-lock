@@ -8,5 +8,10 @@ import cn.rookiex.redislock.data.LockInfo;
  * @Describe :
  */
 public interface ReleaseTimeoutHandler {
+
+    /**
+     * 释放锁超时处理
+     * @param lockInfo 锁信息
+     */
     void handle(LockInfo lockInfo);
 }

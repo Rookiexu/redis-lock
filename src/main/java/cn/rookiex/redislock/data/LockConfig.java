@@ -10,13 +10,17 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = LockConfig.PREFIX)
 public class LockConfig {
     public static final String PREFIX = "cn.rookiex.redis-lock";
-    //redisson
+    /**
+     * redission config
+     */
     private String address;
     private String password;
     private int database = 15;
     private ClusterServer clusterServer;
     private String codec = "org.redisson.codec.JsonJacksonCodec";
-    //lock
+    /**
+     * lock config
+     */
     private long waitTime = 60;
     private long leaseTime = 60;
 

@@ -10,5 +10,13 @@ import org.aspectj.lang.JoinPoint;
  * @Describe :
  */
 public interface LockTimeoutHandler {
+
+    /**
+     * 处理超时情况下的业务逻辑
+     *
+     * @param lockInfo  锁信息
+     * @param redisLock 锁
+     * @param joinPoint 切入点
+     */
     void handle(LockInfo lockInfo, RedisLock redisLock, JoinPoint joinPoint);
 }
